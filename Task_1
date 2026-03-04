@@ -1,0 +1,30 @@
+/*Дан текстовый файл с именем name1, содержащий строковые представления целых чисел,
+ и строка name2. Записать в текстовый файл с именем name2 все ненулевые числа из 
+ исходного файла в том же порядке, располагая каждое число на новой строке. 
+ Использовать итераторы istream_iterator, ostream_iterator и алгоритм remove_copy. */
+
+
+#include <fstream>
+#include <iterator>
+#include <algorithm>
+#include <string>
+
+void copyNotZeroNumbers(const std::string& InputName, const std::string& OutputName){
+	std::ifstream inFile (InputName);
+	std::ofstream outFile (OutputName);
+
+	if(inFile && outFile){
+		std::istream_iterator <int> inputIterBegin (inFile);
+		std::istream_iterator <int> inputIterEnd;
+		std::ostream_iterator <int> outputIter (outFile, "\n");
+
+		std::remove_copy(inputIterBegin, inputIterEnd, outputIter, 0);
+	}
+}
+
+int main(){
+	std::string inFileName = "inFile";
+	std::string outFileName = "outFile";
+	copyNotZeroNumbers(inFileName, outFileName);
+	return 0;
+}
