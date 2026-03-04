@@ -1,0 +1,54 @@
+/*Даны вектор V, дек D и список L. Каждый исходный контейнер содержит
+ не менее двух элементов, количество элементов является четным. 
+ Поменять значения двух средних элементов каждого из исходных контейнеров. 
+ Использовать алгоритм swap (не путать его с одноименной функцией-членом контейнера). */
+
+#include <iostream>
+#include <vector>
+#include <deque>
+#include <list>
+#include <iterator>
+#include <algorithm>
+
+
+
+ template <typename T>
+ void swapMiddle (T& container){
+	auto iterMid1 = std::next(container.begin(), container.size()/2-1);
+	auto iterMid2 = std::next(iterMid1);
+	std::swap(*iterMid1, *iterMid2);
+ }
+
+ int main(){
+    std::vector<int> vec = {10, 20, 30, 40, 50, 60};
+
+    std::deque<int> deq = {1, 2, 3, 4, 5, 6};
+
+    std::list<int> lst = {100, 200, 300, 400, 500, 600, 777, 800};
+
+	std::cout << "\nИсходные данные\n";
+
+	std::cout << "\nVector: ";
+	for (auto v: vec) std::cout << v << " ";
+
+	std::cout << "\nDequeue: ";
+	for (auto d: deq) std::cout << d << " ";
+
+	std::cout << "\nList: ";
+	for (auto l: lst) std::cout << l << " ";
+
+	swapMiddle(vec);
+	swapMiddle(deq);
+	swapMiddle(lst);
+
+	std::cout << "\n\nОбработанные данные\n";
+
+	std::cout << "\nVector: ";
+	for (auto v: vec) std::cout << v << " ";
+
+	std::cout << "\nDequeue: ";
+	for (auto d: deq) std::cout << d << " ";
+
+	std::cout << "\nList: ";
+	for (auto l: lst) std::cout << l << " ";
+ }
