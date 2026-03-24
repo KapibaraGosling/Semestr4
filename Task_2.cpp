@@ -10,16 +10,20 @@
 #include <iterator>
 #include <algorithm>
 
+template <typename T>
+void print_container(const std::string& name, const T& container){
+	std::cout << "\n" << name << ": ";
+	for (auto c: container) std::cout << c << " ";
+}
 
-
- template <typename T>
- void swapMiddle (T& container){
+template <typename T>
+void swap_middle (T& container){
 	auto iterMid1 = std::next(container.begin(), container.size()/2-1);
 	auto iterMid2 = std::next(iterMid1);
 	std::swap(*iterMid1, *iterMid2);
- }
+}
 
- int main(){
+int main(){
     std::vector<int> vec = {10, 20, 30, 40, 50, 60};
 
     std::deque<int> deq = {1, 2, 3, 4, 5, 6};
@@ -28,27 +32,19 @@
 
 	std::cout << "\nИсходные данные\n";
 
-	std::cout << "\nVector: ";
-	for (auto v: vec) std::cout << v << " ";
+	print_container("Vector", vec);
+	print_container("Dequeue", deq);
+	print_container("List", lst);
 
-	std::cout << "\nDequeue: ";
-	for (auto d: deq) std::cout << d << " ";
-
-	std::cout << "\nList: ";
-	for (auto l: lst) std::cout << l << " ";
-
-	swapMiddle(vec);
-	swapMiddle(deq);
-	swapMiddle(lst);
+	swap_middle(vec);
+	swap_middle(deq);
+	swap_middle(lst);
 
 	std::cout << "\n\nОбработанные данные\n";
 
-	std::cout << "\nVector: ";
-	for (auto v: vec) std::cout << v << " ";
-
-	std::cout << "\nDequeue: ";
-	for (auto d: deq) std::cout << d << " ";
-
-	std::cout << "\nList: ";
-	for (auto l: lst) std::cout << l << " ";
- }
+	print_container("Vector", vec);
+	print_container("Dequeue", deq);
+	print_container("List", lst);
+	std::cout << std::endl;
+	return 0;	
+}
