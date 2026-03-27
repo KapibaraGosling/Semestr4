@@ -13,15 +13,26 @@
 #include <iterator>
 #include <algorithm>
 
-
+std::vector<int> input_vector(){
+	int n;
+	std::cout << "Введите количество элементов: ";
+	std::cin>>n;
+	std::vector<int> vec(n);
+	std::cout<<"Введите элементы вектора через пробел\n";
+	for (int i = 0; i<n; i++){
+		std::cin>>vec[i];
+	} 
+	return vec;
+}
 
 int main(){
-    std::vector<int> vec1 = {10, 20, 30, 40, 50, 60};
-	std::vector<int> vec2 = {60, 60, 20, 35, 40, 100, 15};
+    std::vector<int> vec1 = input_vector();
+	std::vector<int> vec2 = input_vector();
 
 	std::multiset <int, std::greater<int>> mulset1(vec1.begin(), vec1.end());
 	std::multiset <int, std::greater<int>> mulset2(vec2.begin(), vec2.end());
 
+	std::cout<< "Результат выполнения программы:\n";
 	std::set_symmetric_difference(
 		mulset1.begin(), mulset1.end(),
 		mulset2.begin(), mulset2.end(),
