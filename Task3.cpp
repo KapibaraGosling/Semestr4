@@ -14,19 +14,19 @@
 #include <algorithm>
 
 std::vector<int> input_vector(){
-	int n;
-	std::cout << "Введите количество элементов: ";
-	std::cin>>n;
-	std::vector<int> vec(n);
-	std::cout<<"Введите элементы вектора через пробел\n";
-	for (int i = 0; i<n; i++){
-		std::cin>>vec[i];
-	} 
+	std::vector<int> vec;
+	int val;
+	while (std::cin >> val){
+		vec.push_back(val);
+	}
+	std::cin.clear();
 	return vec;
 }
 
-int main(){
+int main(){ 
+	std::cout<<"Введите элементы первого вектора через пробел\n";
     std::vector<int> vec1 = input_vector();
+    std::cout<<"Введите элементы второго вектора через пробел\n";
 	std::vector<int> vec2 = input_vector();
 
 	std::multiset <int, std::greater<int>> mulset1(vec1.begin(), vec1.end());
