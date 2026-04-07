@@ -11,6 +11,17 @@
 #include <algorithm>
 
 template <typename T>
+T input_container(){
+	T t;
+	typename T::value_type val;
+	while(std::cin>>val){
+		t.push_back(val);
+	}
+	std::cin.clear();
+	return t;
+}
+
+template <typename T>
 void print_container(const std::string& name, const T& container){
 	std::cout << "\n" << name << ": ";
 	for (auto c: container) std::cout << c << " ";
@@ -24,17 +35,12 @@ void swap_middle (T& container){
 }
 
 int main(){
-    std::vector<int> vec = {10, 20, 30, 40, 50, 60};
-
-    std::deque<int> deq = {1, 2, 3, 4, 5, 6};
-
-    std::list<int> lst = {100, 200, 300, 400, 500, 600, 777, 800};
-
-	std::cout << "\nИсходные данные\n";
-
-	print_container("Vector", vec);
-	print_container("Dequeue", deq);
-	print_container("List", lst);
+	std::cout<<"Введите элементы вектора:\n";
+    std::vector<int> vec = input_container<std::vector<int>>();
+	std::cout<<"Введите элементы дека:\n";
+    std::deque<int> deq = input_container<std::deque<int>>();
+    std::cout<<"Введите элементы списка:\n";
+    std::list<int> lst = input_container<std::list<int>>();
 
 	swap_middle(vec);
 	swap_middle(deq);
