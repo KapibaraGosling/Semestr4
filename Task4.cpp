@@ -23,8 +23,7 @@ int main(){
 	std::cout<<"Введите элементы вектора через пробел\n";
     std::vector<int> V = input_vector();
 	if(V.empty()){
-		std::cout<< "Введен пустой вектор";
-		return 1;
+		throw std::invalid_argument("Ошибка: пустой вектор.");
 	}
 	int K;
 	std::cout<<"Введите число K\n";
