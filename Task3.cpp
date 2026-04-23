@@ -12,22 +12,23 @@
 #include <set>
 #include <iterator>
 #include <algorithm>
+#include <string>
 
-std::vector<int> input_vector(){
-	std::vector<int> vec;
-	int val;
-	while (std::cin >> val){
-		vec.push_back(val);
-	}
+std::vector<int> input_vector(std::string massege){
+	std::cout << massege;
+	std::vector<int> vec (std::istream_iterator<int>(std::cin),
+						std::istream_iterator<int>());
 	std::cin.clear();
 	return vec;
 }
 
 int main(){ 
-	std::cout<<"Введите элементы первого вектора через пробел\n";
-    std::vector<int> vec1 = input_vector();
-    std::cout<<"Введите элементы второго вектора через пробел\n";
-	std::vector<int> vec2 = input_vector();
+    std::vector<int> vec1 = input_vector("Введите элементы первого вектора через пробел\n");
+	std::vector<int> vec2 = input_vector("Введите элементы второго вектора через пробел\n");
+
+	if (vec2.empty()||vec1.empty()) {
+        throw std::invalid_argument("Ошибка: один из векторов пустой.");
+    }
 
 	std::multiset <int, std::greater<int>> mulset1(vec1.begin(), vec1.end());
 	std::multiset <int, std::greater<int>> mulset2(vec2.begin(), vec2.end());
